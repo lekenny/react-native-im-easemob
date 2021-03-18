@@ -75,7 +75,7 @@ class EasemobHelper {
         }
 
         EMOptions emOptions = initOptions(options);
-        configOfflinePushPar(emOptions);
+//         configOfflinePushPar(emOptions);
         EMClient.getInstance().init(context, emOptions);
 
         registerListener();
