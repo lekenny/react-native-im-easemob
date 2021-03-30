@@ -270,4 +270,33 @@ public class GroupManager extends ReactContextBaseJavaModule {
         }
         return result;
     }
+    @ReactMethod
+    public void addGroupAdmin(ReadableMap params, Promise promise) {
+        if (CheckUtil.checkParamKey(params, new String[]{"groupId", "admin"}, promise)) {
+            return;
+        }
+        try {
+            EMGroup group = EMClient.getInstance().groupManager().addGroupAdmin(
+                    params.getString("groupId"), params.getString("admin"));
+            promise.resolve(EasemobConverter.convert(group));
+        } catch (HyphenateException e) {
+            e.printStackTrace();
+            promise.reject("-1", "添加管理员失败", e);
+        }
+    }
+
+    @ReactMethod
+    public void removeGroupAdmin(ReadableMap params, Promise promise) {
+        if (CheckUtil.checkParamKey(params, new String[]{"groupId", "admin"}, promise)) {
+            return;
+        }
+        try {
+            EMGroup group = EMClient.getInstance().groupManager().removeGroupAdmin(
+                    params.getString("groupId"), params.getString("admin"));
+            promise.resolve(EasemobConverter.convert(group));
+        } catch (HyphenateException e) {
+            e.printStackTrace();
+            promise.reject("-1", "移除管理员失败", e);
+        }
+    }
 }
