@@ -108,7 +108,7 @@ export const updateGroupOwner = (groupId, newOwner) =>
  * @param groupId 群组ID
  * @param admin 成员ImID
  */
-export const addGroupAdmin = (groupId, members) =>
+export const addGroupAdmin = (groupId, admin) =>
   NativeUtil(GroupManager.addGroupAdmin, {
     groupId,
     admin,
@@ -118,7 +118,7 @@ export const addGroupAdmin = (groupId, members) =>
  * @param groupId 群组ID
  * @param admin 成员ImID
  */
-export const removeGroupAdmin = (groupId, members) =>
+export const removeGroupAdmin = (groupId, admin) =>
   NativeUtil(GroupManager.removeGroupAdmin, {
     groupId,
     admin,

@@ -186,14 +186,29 @@ RCT_EXPORT_METHOD(updateGroupExt:(NSString *)params
     }
 }
 
-RCT_EXPORT_METHOD(changeGroupDescription:(NSString *)params
+RCT_EXPORT_METHOD(addGroupAdmin:(NSString *)params
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
     NSDictionary *allParams = [params jsonStringToDictionary];
     EMError *error = nil;
     NSString *groupId = [allParams objectForKey:@"groupId"];
-    NSString *description = [allParams objectForKey:@"description"];
-    EMGroup *group = [[EMClient sharedClient].groupManager changeDescription:description forGroup:groupId error:&error];
+    NSString *admin = [allParams objectForKey:@"admin"];
+    EMGroup *group = [[EMClient sharedClient].groupManager addAdmin:admin toGroup:groupId error:&error];
+    if (!error) {
+        resolve([group objectToJSONString]);
+    } else {
+        reject([NSString stringWithFormat:@"%ld", (NSInteger)error.code], error.errorDescription, nil);
+    }
+}
+
+RCT_EXPORT_METHOD(removeGroupAdmin:(NSString *)params
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject) {
+    NSDictionary *allParams = [params jsonStringToDictionary];
+    NSString *groupId = [allParams objectForKey:@"groupId"];
+    NSString *admin = [allParams objectForKey:@"admin"];
+    EMError *error = nil;
+    EMGroup *group = [[EMClient sharedClient].groupManager removeAdmin:admin fromGroup:groupId error:&error];
     if (!error) {
         resolve([group objectToJSONString]);
     } else {
