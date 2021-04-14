@@ -24,7 +24,7 @@ RCT_EXPORT_METHOD(createGroup:(NSString *)params
     EMGroupOptions *setting = [[EMGroupOptions alloc] init];
     setting.maxUsersCount = 500;
     setting.IsInviteNeedConfirm = NO;
-    setting.style = EMGroupStylePublicOpenJoin;
+    setting.style = EMGroupStylePrivateMemberCanInvite;
     NSDictionary *options = [allParams objectForKey:@"setting"];
     NSString *subject = [allParams objectForKey:@"subject"];
     NSString *description = [allParams objectForKey:@"description"];
