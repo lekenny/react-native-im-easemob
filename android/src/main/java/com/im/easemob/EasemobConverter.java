@@ -13,6 +13,7 @@ import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMFileMessageBody;
 import com.hyphenate.chat.EMGroup;
+import com.hyphenate.chat.EMGroupManager;
 import com.hyphenate.chat.EMGroupOptions;
 import com.hyphenate.chat.EMImageMessageBody;
 import com.hyphenate.chat.EMLocationMessageBody;
