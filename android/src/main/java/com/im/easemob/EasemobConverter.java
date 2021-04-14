@@ -437,6 +437,7 @@ public class EasemobConverter {
             option.maxUsers = setting.getInt("maxUsers");
         }
         option.style = EMGroupManager.EMGroupStyle.EMGroupStylePrivateMemberCanInvite;
+        option.inviteNeedConfirm = false;
         // todo 增加其他群设置
         return option;
     }
