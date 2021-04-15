@@ -82,6 +82,12 @@ export const setUserAccountDidLoginFromOtherDevice = setCallback(Client, 'userAc
  */
 export const setUserAccountDidRemoveFromServer = setCallback(Client, 'userAccountDidRemoveFromServer');
 
+/**
+ * 增加了联系人时回调此方法
+ * callback方法不接收参数。
+ */
+export const setContactAdded = setCallback(Client, 'ContactAdded');
+
 function setCallback(type, subType) {
     return function (callback) {
         if (!handlers[type]) {

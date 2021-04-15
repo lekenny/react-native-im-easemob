@@ -25,6 +25,7 @@ import static com.im.easemob.IMConstant.CHAT_MANAGER_DELEGATE;
 import static com.im.easemob.IMConstant.CLIENT_DELEGATE;
 import static com.im.easemob.IMConstant.CMD_MESSAGE_DID_RECEIVE;
 import static com.im.easemob.IMConstant.CONNECTION_STATE_DID_CHANGE;
+import static com.im.easemob.IMConstant.CONTACT_ADDED;
 import static com.im.easemob.IMConstant.CONVERSATION_LIST_DID_UPDATE;
 import static com.im.easemob.IMConstant.DID_LEAVE_GROUP;
 import static com.im.easemob.IMConstant.GROUP_MANAGER_DELEGATE;
@@ -241,7 +242,8 @@ public class EasemobListener implements EMGroupChangeListener, EMMessageListener
 
     @Override
     public void onContactAdded(String s) {
-
+        EasemobHelper.getInstance()
+                .sendEvent(CLIENT_DELEGATE, CONTACT_ADDED, s);
     }
 
     @Override

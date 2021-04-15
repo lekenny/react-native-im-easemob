@@ -40,4 +40,8 @@ RCT_EXPORT_MODULE();
     [Client sendEventByType:eventType subType:@"userAccountDidRemoveFromServer" data:@{}];
 }
 
+- (void)friendRequestDidApproveByUser {
+    [Client sendEventByType:eventType subType:@"ContactAdded" data:@{}];
+}
+
 @end

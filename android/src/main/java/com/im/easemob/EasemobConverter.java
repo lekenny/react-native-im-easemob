@@ -449,6 +449,7 @@ public class EasemobConverter {
         result.putInt("occupantsCount", group.getMemberCount() + 1);
         result.putString("owner", group.getOwner());
 
+
         WritableMap setting = Arguments.createMap();
         setting.putInt("maxUsersCount", group.getMaxUserCount());
         result.putMap("setting", setting);
@@ -462,6 +463,8 @@ public class EasemobConverter {
         result.putString("announcement", group.getAnnouncement());
         result.putBoolean("isBlocked", group.isMsgBlocked());
         result.putBoolean("isPublic", group.isPublic());
+        result.putBoolean("isMemberAllowToInvite", group.isMemberAllowToInvite());
+        result.putBoolean("isMemberOnly", group.isMemberOnly());
         result.putArray("sharedFileList", convertList(group.getShareFileList()));
         result.putString("description", group.getDescription());
         return result;

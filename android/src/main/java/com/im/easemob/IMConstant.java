@@ -8,7 +8,7 @@ import androidx.annotation.StringDef;
  */
 
 public class IMConstant {
-    public static final class MessageKey{
+    public static final class MessageKey {
         public static final String CONVERSATION_ID = "conversationId";
         public static final String CHAT_TYPE = "chatType";
         public static final String FROM_ID = "fromId";
@@ -68,6 +68,8 @@ public class IMConstant {
     public static final String USER_DID_LEAVE_GROUP = "userDidLeaveGroup";
     public static final String GROUP_OWNER_DID_UPDATE = "groupOwnerDidUpdate";
 
+    public static final String CONTACT_ADDED = "ContactAdded";
+
     public static final String USER_ACCOUNT_DID_REMOVE_FROM_SERVER = "userAccountDidRemoveFromServer";
     public static final String USER_ACCOUNT_DID_LOGIN_FROM_OTHER_DEVICE = "userAccountDidLoginFromOtherDevice";
     public static final String CONNECTION_STATE_DID_CHANGE = "connectionStateDidChange";
@@ -76,7 +78,7 @@ public class IMConstant {
 
     @StringDef({MESSAGE_DID_RECEIVE, CMD_MESSAGE_DID_RECEIVE, CONVERSATION_LIST_DID_UPDATE, USER_DID_LEAVE_GROUP,
             USER_DID_JOIN_GROUP, GROUP_OWNER_DID_UPDATE, USER_ACCOUNT_DID_LOGIN_FROM_OTHER_DEVICE,
-            USER_ACCOUNT_DID_REMOVE_FROM_SERVER, CONNECTION_STATE_DID_CHANGE, AUTO_LOGIN_DID_COMPLETE, DID_LEAVE_GROUP})
+            USER_ACCOUNT_DID_REMOVE_FROM_SERVER, CONNECTION_STATE_DID_CHANGE, AUTO_LOGIN_DID_COMPLETE, DID_LEAVE_GROUP, CONTACT_ADDED})
     public @interface SubType {
 
     }
