@@ -12,6 +12,7 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
+import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCursorResult;
 import com.hyphenate.chat.EMGroup;
@@ -21,6 +22,8 @@ import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.im.easemob.IMConstant.MessageKey.CONVERSATION_ID;
 
 /**
  * Created by kevin.bai on 2018/7/12.
@@ -298,5 +301,45 @@ public class GroupManager extends ReactContextBaseJavaModule {
             e.printStackTrace();
             promise.reject("-1", "移除管理员失败", e);
         }
+    }
+
+    @ReactMethod
+    public void muteAllMembers(ReadableMap params, final Promise promise) {
+        if (CheckUtil.checkParamKey(params, new String[]{"groupId"}, promise)) {
+            return;
+        }
+        String conversationId = params.getString("groupId");
+
+        EMClient.getInstance().groupManager().muteAllMembers(conversationId, new EMValueCallBack<EMGroup>() {
+            @Override
+            public void onSuccess(EMGroup value) {
+                promise.resolve(null);
+            }
+
+            @Override
+            public void onError(int error, String errorMsg) {
+                promise.reject(String.valueOf(error),errorMsg);
+            }
+        });
+    }
+
+    @ReactMethod
+    public void unmuteAllMembers(ReadableMap params, final Promise promise) {
+        if (CheckUtil.checkParamKey(params, new String[]{"groupId"}, promise)) {
+            return;
+        }
+        String conversationId = params.getString("groupId");
+
+        EMClient.getInstance().groupManager().unmuteAllMembers(conversationId, new EMValueCallBack<EMGroup>() {
+            @Override
+            public void onSuccess(EMGroup value) {
+                promise.resolve(null);
+            }
+
+            @Override
+            public void onError(int error, String errorMsg) {
+                promise.reject(String.valueOf(error),errorMsg);
+            }
+        });
     }
 }

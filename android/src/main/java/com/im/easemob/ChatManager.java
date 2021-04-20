@@ -14,11 +14,13 @@ import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.WritableArray;
 import com.hyphenate.EMCallBack;
+import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMChatManager;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMFileMessageBody;
+import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chat.EMImageMessageBody;
 import com.hyphenate.chat.EMLocationMessageBody;
 import com.hyphenate.chat.EMMessage;
@@ -288,6 +290,19 @@ public class ChatManager extends ReactContextBaseJavaModule {
         EMConversation.EMConversationType chatType = EasemobConverter
                 .toConversationType(params.getInt(CHAT_TYPE));
         EMClient.getInstance().chatManager().getConversation(conversationId, chatType, true).markAllMessagesAsRead();
+        promise.resolve(null);
+    }
+
+    @ReactMethod
+    public void removeMessage(ReadableMap params, Promise promise) {
+        if (CheckUtil.checkParamKey(params, new String[]{CONVERSATION_ID, CHAT_TYPE, MESSAGE_ID}, promise)) {
+            return;
+        }
+        String conversationId = params.getString(CONVERSATION_ID);
+        String messageId = params.getString(MESSAGE_ID);
+        EMConversation.EMConversationType chatType = EasemobConverter
+                .toConversationType(params.getInt(CHAT_TYPE));
+        EMClient.getInstance().chatManager().getConversation(conversationId, chatType, true).removeMessage(messageId);
         promise.resolve(null);
     }
 

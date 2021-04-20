@@ -231,4 +231,32 @@ RCT_EXPORT_METHOD(changeGroupDescription:(NSString *)params
     }
 }
 
+RCT_EXPORT_METHOD(muteAllMembers:(NSString *)params
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject) {
+    NSDictionary *allParams = [params jsonStringToDictionary];
+    NSString *groupId = [allParams objectForKey:@"groupId"];
+    EMError *error = nil;
+    EMGroup *group = [[EMClient sharedClient].groupManager muteAllMembersFromGroup:groupId error:&error];
+    if (!error) {
+        resolve([group objectToJSONString]);
+    } else {
+        reject([NSString stringWithFormat:@"%ld", (NSInteger)error.code], error.errorDescription, nil);
+    }    
+}
+
+RCT_EXPORT_METHOD(unmuteAllMembers:(NSString *)params
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject) {
+    NSDictionary *allParams = [params jsonStringToDictionary];
+    NSString *groupId = [allParams objectForKey:@"groupId"];
+    EMError *error = nil;
+    EMGroup *group = [[EMClient sharedClient].groupManager unmuteAllMembersFromGroup:groupId error:&error];
+    if (!error) {
+        resolve([group objectToJSONString]);
+    } else {
+        reject([NSString stringWithFormat:@"%ld", (NSInteger)error.code], error.errorDescription, nil);
+    }
+}
+
 @end

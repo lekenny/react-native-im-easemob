@@ -125,3 +125,20 @@ export const removeGroupAdmin = (groupId, admin) =>
     groupId,
     admin,
   });
+/**
+ * 全员禁言 群主和管理员权限
+ * @param groupId 群组ID
+ */
+export const muteAllMembers = (groupId) =>
+  NativeUtil(GroupManager.muteAllMembers, {
+    groupId,
+  });
+
+/**
+ * 解除全员禁言 群主和管理员权限
+ * @param groupId 群组ID
+ */
+export const unmuteAllMembers = (groupId) =>
+  NativeUtil(GroupManager.muteAllMembers, {
+    groupId,
+  });
