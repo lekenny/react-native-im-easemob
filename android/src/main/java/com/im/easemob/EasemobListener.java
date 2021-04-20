@@ -83,6 +83,11 @@ public class EasemobListener implements EMGroupChangeListener, EMMessageListener
         EasemobHelper.getInstance().sendEvent(CHAT_MANAGER_DELEGATE, CONVERSATION_LIST_DID_UPDATE);
     }
 
+    @Override
+    public void onConversationRead(String from, String to) {
+
+    }
+
     /******************** GroupListener ********************/
 
     @Override
@@ -148,6 +153,21 @@ public class EasemobListener implements EMGroupChangeListener, EMMessageListener
 
     @Override
     public void onMuteListRemoved(String s, List<String> list) {
+
+    }
+
+    @Override
+    public void onWhiteListAdded(String groupId, List<String> whitelist) {
+
+    }
+
+    @Override
+    public void onWhiteListRemoved(String groupId, List<String> whitelist) {
+
+    }
+
+    @Override
+    public void onAllMemberMuteStateChanged(String groupId, boolean isMuted) {
 
     }
 
