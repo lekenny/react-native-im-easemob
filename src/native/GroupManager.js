@@ -139,6 +139,6 @@ export const muteAllMembers = (groupId) =>
  * @param groupId 群组ID
  */
 export const unmuteAllMembers = (groupId) =>
-  NativeUtil(GroupManager.muteAllMembers, {
+  NativeUtil(GroupManager.unmuteAllMembers, {
     groupId,
   });

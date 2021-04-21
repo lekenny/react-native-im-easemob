@@ -448,7 +448,7 @@ public class EasemobConverter {
         result.putArray("blackList", convertList(group.getBlackList()));
         result.putInt("occupantsCount", group.getMemberCount() + 1);
         result.putString("owner", group.getOwner());
-
+        result.putBoolean("isMuteAllMembers", group.isAllMemberMuted());
 
         WritableMap setting = Arguments.createMap();
         setting.putInt("maxUsersCount", group.getMaxUserCount());
