@@ -11,6 +11,7 @@
 #import "NSString+Util.h"
 #import "NSObject+Util.h"
 #import <Hyphenate/Hyphenate.h>
+#import <Hyphenate/IEMPushManager.h>
 
 @implementation APNs
 
@@ -52,9 +53,10 @@ RCT_EXPORT_METHOD(setApnsDisplayStyle:(NSString *)params
                   rejecter:(RCTPromiseRejectBlock)reject) {
     NSDictionary *allParams = [params jsonStringToDictionary];
     BOOL showDetail = [[allParams objectForKey:@"showDetail"] boolValue];
-    EMPushOptions *options = [[EMClient sharedClient] pushOptions];
-    options.displayStyle = showDetail ? EMPushDisplayStyleMessageSummary : EMPushDisplayStyleSimpleBanner;
-    EMError *error = [[EMClient sharedClient] updatePushOptionsToServer];
+    EMError *error = [[EMClient sharedClient].pushManager updatePushDisplayStyle:showDetail ? EMPushDisplayStyleMessageSummary : EMPushDisplayStyleSimpleBanner];
+    
+//    options.displayStyle = ;
+//     [[EMClient sharedClient] updatePushOptionsToServer];
     if (!error) {
         resolve(@"{}");
     } else {
@@ -90,25 +92,26 @@ RCT_EXPORT_METHOD(getIgnoredGroupIds:(RCTPromiseResolveBlock)resolve
 RCT_EXPORT_METHOD(setNoDisturbStatus:(NSString *)params
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
-    NSDictionary *allParams = [params jsonStringToDictionary];
-    BOOL status = [[allParams objectForKey:@"status"] boolValue];
-    EMPushOptions *options = [[EMClient sharedClient] pushOptions];
-    if (status) {
-        NSInteger startH = [[allParams objectForKey:@"startH"] integerValue];
-        NSInteger endH = [[allParams objectForKey:@"endH"] integerValue];
-        options.noDisturbingStartH = startH;
-        options.noDisturbingEndH = endH;
-        BOOL isWholeDay = startH == 0 && endH == 24;
-        options.noDisturbStatus = isWholeDay ? EMPushNoDisturbStatusDay : EMPushNoDisturbStatusCustom;
-    } else {
-        options.noDisturbStatus = EMPushNoDisturbStatusClose;
-    }
-    EMError *error = [[EMClient sharedClient] updatePushOptionsToServer];
-    if (!error) {
+//    NSDictionary *allParams = [params jsonStringToDictionary];
+//    BOOL status = [[allParams objectForKey:@"status"] boolValue];
+//    EMPushOptions *options = [[EMClient sharedClient] pushOptions];
+//    EMError *error = [[EMClient sharedClient].pushManager updatePushDisplayStyle:showDetail ? EMPushDisplayStyleMessageSummary : EMPushDisplayStyleSimpleBanner];
+//    if (status) {
+//        NSInteger startH = [[allParams objectForKey:@"startH"] integerValue];
+//        NSInteger endH = [[allParams objectForKey:@"endH"] integerValue];
+//        options.noDisturbingStartH = startH;
+//        options.noDisturbingEndH = endH;
+//        BOOL isWholeDay = startH == 0 && endH == 24;
+//        options.noDisturbStatus = isWholeDay ? EMPushNoDisturbStatusDay : EMPushNoDisturbStatusCustom;
+//    } else {
+//        options.noDisturbStatus = EMPushNoDisturbStatusClose;
+//    }
+//    EMError *error = [[EMClient sharedClient] updatePushOptionsToServer];
+//    if (!error) {
         resolve(@"{}");
-    } else {
-        reject([NSString stringWithFormat:@"%ld", (NSInteger)error.code], error.errorDescription, nil);
-    }
+//    } else {
+//        reject([NSString stringWithFormat:@"%ld", (NSInteger)error.code], error.errorDescription, nil);
+//    }
 }
 
 @end
