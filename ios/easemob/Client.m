@@ -77,6 +77,8 @@ RCT_EXPORT_METHOD(login:(NSString *)params
         } else {
             reject([NSString stringWithFormat:@"%ld",(long)error.code], error.errorDescription, nil);
         }
+    } else {
+            reject([NSString stringWithFormat:@"%ld",(long)error.code], error.errorDescription, nil);
     }
 }
 
