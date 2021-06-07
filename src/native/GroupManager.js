@@ -15,7 +15,7 @@ export const createGroup = (imIds) =>
     invitees: imIds,
     message: '',
     setting: {
-      maxUsers: 500,
+      maxUsers: 1000,
     },
   });
 
