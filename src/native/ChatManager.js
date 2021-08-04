@@ -325,3 +325,23 @@ export const removeMessage = (conversationId, chatType, messageId) =>
     chatType,
     messageId,
   });
+
+/**
+ * 查找聊天记录
+ * @param {*} conversationId 会话ID
+ * @param {*} chatType 聊天类型
+ * @param {*} keywords 搜索消息中的关键词
+ * @param {*} timeStamp 搜索消息的时间点
+ * @param {*} count 搜索结果的最大条数
+ * @param {*} fromId 搜索来自某人的消息，适用于搜索群组里的消息
+ * @returns 
+ */
+export const searchMsg = (conversationId, chatType, keywords,timeStamp,count,fromId) =>
+  NativeUtil(ChatManager.searchMsg, {
+    conversationId,
+    chatType,
+    keywords,
+    timeStamp,
+    count,
+    fromId
+  });

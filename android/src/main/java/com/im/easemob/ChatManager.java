@@ -158,6 +158,21 @@ public class ChatManager extends ReactContextBaseJavaModule {
 
         promise.resolve(EasemobConverter.convertList(list));
     }
+    
+    @ReactMethod
+    public void searchMsg(ReadableMap params,Promise promise){
+        if (CheckUtil
+                .checkParamKey(params, new String[]{CONVERSATION_ID,CHAT_TYPE,"keywords",FROM_ID}, promise)) {
+            return;
+        }
+        String conversationId = params.getString(CONVERSATION_ID);
+        EMConversation.EMConversationType chatType = EasemobConverter.toConversationType(params.getInt(CHAT_TYPE));
+        String keywords = params.getString("keywords");
+        String from = params.getString(FROM_ID);
+        EMConversation conversation = EMClient.getInstance().chatManager().getConversation(conversationId, chatType);
+        List<EMMessage> messages = conversation.searchMsgFromDB(keywords, System.currentTimeMillis(), 20, from, EMConversation.EMSearchDirection.UP);
+        promise.resolve(EasemobConverter.convertList(messages));
+    }
 
     @ReactMethod
     public void deleteMessage(ReadableMap params, Promise promise) {
